@@ -1,0 +1,22 @@
+On the Arduino side we first connected the RX/TX pins
+of the Bluetooth Module to the TX/RX of Arduino, the
+VCC and GND pins to the Arduino's 5V and GND. The Raspberry Pi 3B+ has bluetooth module on-board
+We first begin with the bluetooth connection
+Raspberry Pi wouldn't connect directly 
+so we first need to install some
+packages to the Raspberry Pi that will allow us to connect to it.
+We install bluez tools with the follwing command on the terminal
+of the Raspberry Pi:
+
+sudo apt-get install bluetooth bluez
+
+After installing that we need to know the our Bluetooth name and its properties.
+So in the terminal we type:
+
+hciconfig
+
+You should see "hci0" or an equivalent (hci1, hci2 etc.), Write down that name.
+Next we scan if we can find any 
+
+
+
