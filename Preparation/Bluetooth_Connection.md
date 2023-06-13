@@ -8,7 +8,7 @@ so we first need to install some packages to the Raspberry Pi that will allow us
 We install bluez tools with the follwing command on the terminal
 of the Raspberry Pi:
 
-sudo apt-get install bluetooth bluez
+```sudo apt-get install bluetooth bluez```
 
 ![Rapsberrypi-bluetooth](https://github.com/Myutaze/SmartTransparentOLEDGlasses/assets/123553691/10dfd4c8-daa2-4ef0-809e-6990164972d7)
 
