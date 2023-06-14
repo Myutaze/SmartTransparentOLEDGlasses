@@ -1,9 +1,21 @@
-We first begin with the Bluetooth Connection.
+We first begin with the Bluetooth Connection test.
 On the Arduino side we first connected the RX/TX pins
 of the Bluetooth Module to the TX/RX of Arduino, the
 VCC and GND pins to the Arduino's 5V and GND and turn on the Arduino.
 
-<img src = "https://github.com/Myutaze/SmartTransparentOLEDGlasses/assets/123553691/4bea568e-54ef-4d7e-86c7-71c4c25ffaff" width  = "400" >
+<img align= "left" src = "https://github.com/Myutaze/SmartTransparentOLEDGlasses/assets/123553691/4bea568e-54ef-4d7e-86c7-71c4c25ffaff" width  = "400" >
+
+ 
+|     HC-05     |     Arduino   |     
+| ------------- | ------------- |      
+|     RX        |       TX      | 
+|     TX        |       RX      |
+|     VCC       |       5V      |
+|     GND       |       GND     |
+
+
+<br clear="left"/>
+<br>
 
 The Raspberry Pi 3B+ has bluetooth module on-board
 but the regular bluetooth connection through settings wouldn't connect directly 
@@ -39,3 +51,5 @@ We copy the MAC address of it, so mine is 00:19:10:08:29:6F, you copy your own, 
 
 
 So you should have connected successfully if you have followed the steps correctly.
+
+
