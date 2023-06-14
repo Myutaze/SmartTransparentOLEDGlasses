@@ -5,14 +5,17 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <virtuabotixRTC.h>
+//You can find on the internet how to install these packages on the Arduino IDE
+//We use Adafruit libraries to connect to our screen
 
 #define OLED_RESET 4
 Adafruit_SSD1306 display(OLED_RESET);
 
-SoftwareSerial EEBlue(10, 11); // RX | TX
-virtuabotixRTC RTCD(4, 5, 6); // PIN 4: CLK, PIN5:DATA, PIN 6: RESET
+SoftwareSerial EEBlue(10, 11); // RX | TX is defined to pin 10|11. Beware, place the pins only after the code is uploaded, otherwise it won't work
+virtuabotixRTC RTCD(4, 5, 6); // PIN 4: CLK, PIN5:DATA, PIN 6: RESET This is for the RTC Module
 
-// 'FinalLogo', 128x64px
+// 'Insert your logo here as its like the brand of your Smart Glasses in bitmap format. You can find on the internet a bitmap converter', Our screen resoltion is 128x64px
+// i just placed a star shaped something
 const unsigned char ANKFinalLogo [] PROGMEM = {
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1c, 0x00, 0x00, 0x38, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
@@ -88,16 +91,17 @@ const unsigned char* ANKallArray[1] = {
 
 
 
-char cit[20];
-char base[20];
-char det[30];
-float celcius, dollar, euro, pound;
-int c,t,b,d,i,k,code;
+char cit[20]; //The variable of the city info that it will receive for the weather info up to 20 characters
+char base[20]; //The variable of the weather info it will receive for example: Rain (we'll call it basic weather info)
+char det[30]; // the variable of the weather info in detail for example: Harsh Rain (we'll call it detailed weather info)
+float celcius, dollar, euro, pound; // the variable of the temperature in Celcius, dollar, euro and pound to TL currency exchange  
+int c,t,b,d,i,k,code; //some variable to convert data into integer or string that is readable to the arduino
+// code variable is our sensor alarm variable whether its on or off
 
 int R = 7; // connect ir sensor to arduino pin 7
-int a = 1;
-int statusSensor;
-
+int a = 1; //This is to switch between different tabs: Date&Time, Currency Exchange, Weather info
+int statusSensor; //The alarm system response
+// We initialize the current time 
 int seconds = 00;
 int minutes = 13;
 int hours = 21;
@@ -107,91 +111,102 @@ int month = 01;
 int year = 2022;
 
 void setup() {
-  //RTCD.setDS1302Time(seconds, minutes, hours, dayofweek, dayofmonth, month, year);
-  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
-  display.clearDisplay();
+  //RTCD.setDS1302Time(seconds, minutes, hours, dayofweek, dayofmonth, month, year); we use this command once
+  // if we were to upload the first time, it is not needed later as the module's clock will work on its own after telling
+  // the current time, so use this line code on the first upload
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3C); //We launch the screen it will have random data at startup
+  //(the 0x3C is the ip of the toled, check what is yours)
+  display.clearDisplay();// We clear the screen
+  delay(2000); // wait for 2 seconds, we can't immediatly display our logo as the hardware
+              //of arduino might not process things fast enough
+  display.drawBitmap(0,0, ANKFinalLogo, 128, 64, WHITE); //We choose the logo at 128x64px resolution that we want to display
+  display.display(); //we display it for 2 seconds
   delay(2000);
-  display.drawBitmap(0,0, ANKFinalLogo, 128, 64, WHITE);
-  display.display();
-  delay(2000);
-  display.clearDisplay();
-  display.setTextSize(1);
-  display.setTextColor(WHITE);
-  display.setCursor(22,12);
-  display.println("Welcome Myutaze");
-  display.display();
+  display.clearDisplay(); //then we clear the screen again.
+  display.setTextSize(1); //This is the font size
+  display.setTextColor(WHITE); 
+  display.setCursor(22,12); // This the coordinates of the text we want to display on the screen 
+  //(in y-max = 128, x-max = 64 coordinate screen we place oursleves at y = 22 , x = 12 which is nearly the middle of the screen)
+  display.println("Welcome Myutaze");//We choose a text we want to display. This is like the welcome page
+  display.display();//We display the text
   delay(2000);
   display.clearDisplay();
   display.display(); 
-  Serial.begin(9600);    // 9600 is the default baud rate for the serial Bluetooth module
-  EEBlue.begin(9600);
+  Serial.begin(9600);  //This is for the serial screen on the arduino IDE if we want to 
+  EEBlue.begin(9600); // 9600 is the default baud rate for the serial Bluetooth module
 }
 
-void loop() {
-RTCD.updateTime();
- // check if data is avaliable
+void loop() { 
+RTCD.updateTime(); //we update the time data we receive from the RTC module. It will prompt the arduino to take input from the RTC module
+ // check if data is avaliable from the Bluetooth module
     if (EEBlue.available() > 0){
 
        for ( i = 0; i <= c ; i++){
-      cit[i] = '\0';
+      cit[i] = '\0'; // we clear the city data in each loop in case we change to city of the weather we want to display
      }
     
      for ( i = 0; i <= b ; i++){
-      base[i] = '\0';
+      base[i] = '\0';//same here with weather info
      }
 
     for ( i = 0; i <= d ; i++){
-      det[i] = '\0';
+      det[i] = '\0';// same here with detailed weather info
      }
 
-    code = '\0';
+    code = '\0'; //alarm off
      
      c = EEBlue.parseInt(); 
-     EEBlue.readBytes(cit, c);
+     EEBlue.readBytes(cit, c); 
+      //we receive city info as string, one character at a time, 
+      //c is the variable that will receive one character then store that character in cit variable which can store up to 20 characters
+      //as we initialized before, so let's say your city is Ankara then during the time it recieves data the process looks like this
+      //c = A, cit= A then c = n, cit= An, then c = k, cit= Ank etc. Once it stops receiving data it will end the process and continue
        
-     celcius = EEBlue.parseFloat(); 
+     celcius = EEBlue.parseFloat(); //Tempearture data, numbers are received as one package instead of one by one
      
-     b = EEBlue.parseInt();
+     b = EEBlue.parseInt(); //basic weather info
      EEBlue.readBytes(base, b);
      delay(1000);
-     d = EEBlue.parseInt();
+     d = EEBlue.parseInt();//detailed weather info
      EEBlue.readBytes(det, d);
      
-     dollar = EEBlue.parseFloat();
+     dollar = EEBlue.parseFloat(); //currency info or Dollar-TL
     
-     euro = EEBlue.parseFloat();
+     euro = EEBlue.parseFloat();//currency info or Euro-TL
      
-     pound = EEBlue.parseFloat();
+     pound = EEBlue.parseFloat();//currency info or Pound-TL
      delay(1000);
-     code = EEBlue.parseInt();
+     code = EEBlue.parseInt(); //checks if it has received an alarm signal
           
-     if(code == 1){
+     if(code == 1){ 
       //Serial.println(code);
-      //Serial.println("Intruder Alert");
-      alert();
+      //Serial.println("Intruder Alert"); display on the Arduino IDE serial screen for testing purposes
+      alert();// our alert function
       delay(3000);
       display.clearDisplay();
       display.display();
-
+      //if it has received an alarm signal it will display "Intruder Alert" on the TOLED for 3 seconds
      }
      
      delay(100);
-     display.clearDisplay();
+     display.clearDisplay(); //we clear the display in each loop as to update the data on the screen
      display.display();
 }
-
-statusSensor = digitalRead(R);
+// this is to change tabs between date&time, weather info, and currency exchange
+statusSensor = digitalRead(R);// if the infra red sensor picks a signal (like passing your finger in front) it will send '0' to the arduino
 if (statusSensor == 0){
 delay(100);
-display.clearDisplay();
+display.clearDisplay(); //we clear the current display
 display.display();
-a++;
+a++;// and change to the next tab
 if(a > 3){
   a = 1;
   }
 }
 
-displayed(a);  
+displayed(a); //We call upon a function where it displays to the screen all the info we have received over bluetooth  
+
+//The functions below is to display on the serial screen of Arduino IDE for testing purposes  
 //city(cit);
 //degree(celcius);
 //basic(base);
@@ -200,22 +215,23 @@ displayed(a);
 //eur(euro);
 //gbp(pound);
 }
-
+// The display funtion, we have other functions inside for each data category
 void displayed(int a){
-  
+ 
+ //The first tab: Date&Time
  if(a == 1){   
-     Time();
+     Time();    
      Weekday();
      Date();  
     }
-    
+ //The second tab: Weather info
  if(a == 2){
      discity(cit);
      distemp(celcius);
      disbase(base);
      disdet(det);
     }
-    
+ //The third tab: Currency Exchange
  if(a == 3){ 
      disdol(dollar);
      diseur(euro);
@@ -224,52 +240,56 @@ void displayed(int a){
 
   
 }
-
+//The time function to recieve time from the RTC Module
 void Time(){
 
   String HOURS = String(RTCD.hours);
   String MINUTES = String(RTCD.minutes);
 
   if(RTCD.hours < 10){
-    HOURS = correction(RTCD.hours);
+    HOURS = correction(RTCD.hours); // we use a correction function for hours, 
+                                    //so that instead of for example having '9' we will write it as '09'
   }
   
   if(RTCD.minutes < 10){
-    MINUTES = correction(RTCD.minutes);
+    MINUTES = correction(RTCD.minutes); // we use a correction function for minutes,
+                                        //so that instead of for example having '9' we will write it as '09'
   }
-  
-  display.setCursor(0,0);
+  // after the corrections the time will be displayed as '09:05' instead of '9:5'
+  display.setCursor(0,0); // we set the cursor to 0,0 so we are essecially at the most top left corner, 
+                          //that is where we will display time
   display.print(HOURS);
   display.print(":");
   display.print(MINUTES);
   display.display();
- 
+ //this is to renew the display after 7 seconds for the time, otherwise the time might be stuck for a few seconds on the same minute on the display
   if(RTCD.seconds == 7){
     display.clearDisplay();
     display.display();
   }
-
+//we renew the screen just as it goes a minute above to display it
   if(RTCD.seconds == 59){
     delay(1000);
     display.clearDisplay();
     display.display();
   }   
 }
-
+//This is the date function
 void Date(){
   
   String DAY = String(RTCD.dayofmonth);
   String MONTH = String(RTCD.month);
 
+  //we use same correction as time since we will display the date in the DD/MM/YYYY format
   if(RTCD.dayofmonth < 10){
-    DAY = correction(RTCD.dayofmonth);
+    DAY = correction(RTCD.dayofmonth); 
   }
   
   if(RTCD.month < 10){
     MONTH = correction(RTCD.month);
   }
  
-  display.setCursor(65,10);
+  display.setCursor(65,10); // we set the cursor just below the time
   display.print(DAY);
   display.print(".");
   display.print(MONTH);
@@ -278,6 +298,7 @@ void Date(){
   display.display();
 }
 
+//We also recieve the weekday from the RTC module in numbers (1: Monday, 2: Tuesday etc. until 7)
 void Weekday(){
    display.setCursor(70,0);
    
@@ -312,13 +333,13 @@ void Weekday(){
   }
 }
 
-
+//display the city name function
 void discity(char dc[50]){
   display.setCursor(0,0);
   display.println(dc);
   display.display(); 
 }
-
+//display temperature function
 void distemp(float dt){
   display.setCursor(0,8);
   display.println(dt);
@@ -328,20 +349,20 @@ void distemp(float dt){
   display.println("C");
   display.display(); 
 }
-
+//display basic weather info function
 void disbase(char db[50]){
   display.setCursor(0,16);
   display.println(db);
   display.display(); 
 }
-
+//display detailed weather info function
 void disdet(char dd[50]){
   display.setCursor(0,23);
   display.println(dd);
   display.display(); 
 }
       
-     
+//display Dollar-TL function
 void disdol(float dd){
   display.setCursor(0,0);
   display.print("1 USD: ");
@@ -350,7 +371,7 @@ void disdol(float dd){
   display.display(); 
 }
 
-
+//display Euro-TL function
 void diseur(float dt){
   display.setCursor(0,10);
   display.print("1 EUR: ");
@@ -358,7 +379,7 @@ void diseur(float dt){
   display.print(" TRY");
   display.display(); 
 }
-
+//display Pound-TL function
 void disgbp(float dp){
   display.setCursor(0,20);
   display.print("1 GBP: ");
@@ -366,7 +387,7 @@ void disgbp(float dp){
   display.print(" TRY");
   display.display(); 
 } 
-
+//display alert function
 void alert(){
   display.clearDisplay();
   display.display();
@@ -376,7 +397,7 @@ void alert(){
 }
 
 
-
+//This is to correct writing of numbers 0-9 so that we have the prefix '0' in front of numbers 0-9 (like '1' is now '01' etc.)
 String correction(int a){
     
     String y;
@@ -423,6 +444,7 @@ String correction(int a){
   return y;
 }
 
+//These are test functions for all the data we gather to display them on the serial screen on the Arduino IDE
 void city(char c[50]){
   Serial.print("City: ");
   Serial.println(c); 
