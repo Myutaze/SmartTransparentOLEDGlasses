@@ -13,8 +13,8 @@ There are 7 pins on the TOLED board: GND, VCC, SCL, SDA(or SDAIN), RST, SA0(or D
   
 |     Toled     |     Arduino   |
 | :-------------: | :-------------: |
-|     SCL       |       A5      |
-|     SDA       |       A4      |
+|     SCL       |       Pin A5      |
+|     SDA       |       Pin A4      |
 |     GND       |       GND     |
 |     VCC       |       5V      |
 |     RST       |      RESET    |
@@ -38,8 +38,20 @@ There are 7 pins on the TOLED board: GND, VCC, SCL, SDA(or SDAIN), RST, SA0(or D
 | :-------------: | :-------------: |
 |     VCC       |       5V      |
 |     GND       |      GND      |
-|     RX        |      11(TX)   |
-|     TX        |     10(RX)    |
+|     RX        |      Pin 11(TX)   |
+|     TX        |     Pin 10(RX)    |
 
 On Arduino we will define the RX/TX as pin 10/11
+
+# Infra-red Sensor
+
+
+|      HW-201      |     Arduino   |
+| :-------------: | :-------------: |
+|     VCC       |       3.3V or 5V      |
+|     GND       |      GND      |
+|     OUT        |      Pin 7   |
+
+
+
 
