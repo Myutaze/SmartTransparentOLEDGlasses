@@ -2,6 +2,7 @@ We first begin with the Bluetooth Connection test.
 On the Arduino side we first connected the RX/TX pins
 of the Bluetooth Module to the TX/RX of Arduino, the
 VCC and GND pins to the Arduino's 5V and GND and turn on the Arduino.
+This is only for the test purposes we will change those pins in the code.
 
 <img align= "left" src = "https://github.com/Myutaze/SmartTransparentOLEDGlasses/assets/123553691/4bea568e-54ef-4d7e-86c7-71c4c25ffaff" width  = "400" >
 
