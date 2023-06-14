@@ -2,6 +2,9 @@ We first begin with the Bluetooth Connection.
 On the Arduino side we first connected the RX/TX pins
 of the Bluetooth Module to the TX/RX of Arduino, the
 VCC and GND pins to the Arduino's 5V and GND and turn on the Arduino.
+
+<img src:"https://github.com/Myutaze/SmartTransparentOLEDGlasses/assets/123553691/4bea568e-54ef-4d7e-86c7-71c4c25ffaff" width  = "50" >
+
 The Raspberry Pi 3B+ has bluetooth module on-board
 but the regular bluetooth connection through settings wouldn't connect directly 
 so we first need to install some packages to the Raspberry Pi that will allow us to connect to it.
