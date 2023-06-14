@@ -9,7 +9,7 @@ In Arduino code the connection ports will explained but here is a few of them on
 ## Toled Screen Connection
 
 There are 7 pins on the TOLED board: GND, VCC, SCL, SDA(or SDAIN), RST, SA0(or D/C), CS. We only use 5 of those.
-<div align = "left">
+
   
 |     Toled     |     Arduino   |
 | :-------------: | :-------------: |
@@ -20,7 +20,7 @@ There are 7 pins on the TOLED board: GND, VCC, SCL, SDA(or SDAIN), RST, SA0(or D
 |     RST       |      RESET    |
 
   
-<div>
+
 ## RTC Module Connection
 
 |      RTC      |     Arduino   |
@@ -32,5 +32,14 @@ There are 7 pins on the TOLED board: GND, VCC, SCL, SDA(or SDAIN), RST, SA0(or D
 |     RST       |      Pin 6    |
 
 
+# Bluetooth Module
 
+|      HC-05      |     Arduino   |
+| :-------------: | :-------------: |
+|     VCC       |       5V      |
+|     GND       |      GND      |
+|     RX        |      11(TX)   |
+|     TX        |     10(RX)    |
+
+On Arduino we will define the RX/TX as pin 10/11
 
