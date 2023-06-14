@@ -7,7 +7,7 @@ VCC and GND pins to the Arduino's 5V and GND and turn on the Arduino.
 
  
 |     HC-05     |     Arduino   |     
-| ------------- | ------------- |      
+| :-------------: | :-------------: |      
 |     RX        |       TX      | 
 |     TX        |       RX      |
 |     VCC       |       5V      |
