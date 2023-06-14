@@ -9,19 +9,22 @@ In Arduino code the connection ports will explained but here is a few of them on
 ## Toled Screen Connection
 
 There are 7 pins on the TOLED board: GND, VCC, SCL, SDA(or SDAIN), RST, SA0(or D/C), CS. We only use 5 of those.
-
+<div align = "left">
+  
 |     Toled     |     Arduino   |
-| ------------- | ------------- |
+| :-------------: | :-------------: |
 |     SCL       |       A5      |
 |     SDA       |       A4      |
 |     GND       |       GND     |
 |     VCC       |       5V      |
 |     RST       |      RESET    |
 
+  
+<div>
 ## RTC Module Connection
 
 |      RTC      |     Arduino   |
-| ------------- | ------------- |
+| :-------------: | :-------------: |
 |     VCC       |  3.3V or 5V   |
 |     GND       |      GND      |
 |     CLK       |      Pin 4    |
