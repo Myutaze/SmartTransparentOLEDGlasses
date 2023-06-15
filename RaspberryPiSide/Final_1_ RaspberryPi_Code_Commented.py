@@ -258,7 +258,9 @@ while True:
     time.sleep(0.5) # we put some delays here and there because the Arduino can't process fast enough and cause problems when its receiving data
     bluetoothSerial.write(bytes(c, 'utf-8')) #We send how many characters the Arduino will receive about the city so to make him know to expect that much character
 					      #for that particular data so 6 for Ankara 
-    bluetoothSerial.write(bytes(city, 'utf-8')) # We send the data one by one, so for Ankara we are sending 'A', 'n', 'k', 'a', 'r', 'a' 
+    bluetoothSerial.write(bytes(city, 'utf-8')) # We send the data 'Ankara' to Arduino, in the Arduino's side it will see that it received 6 character data 
+						#so it will stop waiting to receive more data for the city information and proceed to the next line to receive data
+						# about the temperature
     bluetoothSerial.write(bytes(celcius, 'utf-8')) #For numerals its a direct send.
     time.sleep(1.2)
 #We do the same for the rest
