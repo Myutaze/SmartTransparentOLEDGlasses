@@ -1,4 +1,4 @@
-# SmartTransparentOLEDGlasses
+# Smart Transparent OLED Glasses
 Smart Toled Glasses that displays Weather and Currency Exchange Data over bluetooth
 
 
