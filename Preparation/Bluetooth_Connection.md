@@ -51,6 +51,8 @@ We copy the MAC address of it, so mine is 00:19:10:08:29:6F, you copy your own, 
 ![connectblue](https://github.com/Myutaze/SmartTransparentOLEDGlasses/assets/123553691/25fbd89b-7949-46ec-af2b-6aa8261cc32f)
 
 
-So you should have connected successfully if you have followed the steps correctly. Know that before running any code, be sure to establish the Bluetooth Connection, otherwise the code from the Raspberry Pi side will not work
+So you should have connected successfully if you have followed the steps correctly. Know that before running any code, be sure to establish the Bluetooth Connection, otherwise the code from the Raspberry Pi side will not work.
+
+
 
 
