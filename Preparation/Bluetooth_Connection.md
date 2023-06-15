@@ -3,9 +3,9 @@ On the Arduino side we first connected the RX/TX pins
 of the Bluetooth Module to the TX/RX of Arduino, the
 VCC and GND pins to the Arduino's 5V and GND and turn on the Arduino.
 This is only for the test purposes we will change those pins in the code.
+Note that the Bluetooth Module HC-05 mainly work seperately from Arduino, the Arduino just receives inputs from it. 
 
 <img align= "left" src = "https://github.com/Myutaze/SmartTransparentOLEDGlasses/assets/123553691/4bea568e-54ef-4d7e-86c7-71c4c25ffaff" width  = "400" >
-
  
 |     HC-05     |     Arduino   |     
 | :-------------: | :-------------: |      
@@ -51,6 +51,6 @@ We copy the MAC address of it, so mine is 00:19:10:08:29:6F, you copy your own, 
 ![connectblue](https://github.com/Myutaze/SmartTransparentOLEDGlasses/assets/123553691/25fbd89b-7949-46ec-af2b-6aa8261cc32f)
 
 
-So you should have connected successfully if you have followed the steps correctly.
+So you should have connected successfully if you have followed the steps correctly. Know that before running any code, be sure to establish the Bluetooth Connection, otherwise the code from the Raspberry Pi side will not work
 
 
