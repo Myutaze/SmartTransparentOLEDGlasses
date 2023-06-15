@@ -157,8 +157,7 @@ RTCD.updateTime(); //we update the time data we receive from the RTC module. It 
      
      c = EEBlue.parseInt(); // we receive the data of how many character should we expect for the city data (so for example Ankara is 6 so c = 6) 
      EEBlue.readBytes(cit, c); // cit is the where the received data over bluetooth will be stored and c is the variable that will determine how many character cit can take
-      //we receive city info as string, one character at a time at maximum c characters total (so 6 for Ankara), so let's say your city is Ankara then during the time it recieves data the process looks like this
-      //c = A, cit= A then c = n, cit= An, then c = k, cit= Ank etc. and after it received 6 character it will stop waiting for new character and proceed.
+      //we receive city info at maximum c number of characters (so it will wait until it to receives 6 characters or until timeout after that it will procee to the next line in code)
        
      celcius = EEBlue.parseFloat(); //Tempearture data, numbers are received as one package instead of one by one
      
