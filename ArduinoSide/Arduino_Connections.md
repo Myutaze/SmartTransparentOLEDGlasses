@@ -1,6 +1,6 @@
 The full connection of the Arduino Side looks like this:
 
-<img src = "https://github.com/Myutaze/SmartTransparentOLEDGlasses/assets/123553691/a1e76387-fefc-4c1c-a050-33a534f375f3" width = "350">
+<img src = "https://github.com/Myutaze/SmartTransparentOLEDGlasses/assets/123553691/6a333a73-cccb-469b-bf68-e41abca8c3f6" width = "350">
 
 Connect to the Arduino the modules with the help of a breadboard.
 
