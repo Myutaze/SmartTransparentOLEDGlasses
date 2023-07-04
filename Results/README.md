@@ -2,21 +2,23 @@
 
 ## The Brand Logo of the Smart Glasses
 
-<img src = "https://github.com/Myutaze/SmartTransparentOLEDGlasses/assets/123553691/54311b15-33ba-41cc-b65e-286f8eec0cc0)" width = "300" >
+<img src = "https://github.com/Myutaze/SmartTransparentOLEDGlasses/assets/123553691/bb8f5ad3-daf6-46e8-b16c-70a5bc09f4f2" width = "300" >
 
 ## Welcome Screen
 
-<img src = "https://github.com/Myutaze/SmartTransparentOLEDGlasses/assets/123553691/a77d1e01-9267-40b7-a946-0d0e990d3d41" width = "300" >
+<img src = "https://github.com/Myutaze/SmartTransparentOLEDGlasses/assets/123553691/e9b79367-8e3b-4005-aed0-226e4b41c61f" width = "300" >
 
 ## Time & Date Tab
 
-<img src = "https://github.com/Myutaze/SmartTransparentOLEDGlasses/assets/123553691/d7851919-1852-4f04-9923-24773c793b26" width = "300" >
+<img src = "https://github.com/Myutaze/SmartTransparentOLEDGlasses/assets/123553691/0104a527-83c2-4a02-aff9-3ecd3208c707" width = "300" >
+
 
 ## Weather Tab
 
-<img src = "https://github.com/Myutaze/SmartTransparentOLEDGlasses/assets/123553691/fdd4ca3f-c507-4c8c-9b55-18df7b8bff0e" width = "300" >
+<img src = "https://github.com/Myutaze/SmartTransparentOLEDGlasses/assets/123553691/79ed4495-3449-4b8e-bff4-54a0e7c9f0de" width = "300" >
 
 ## Currency Exchange Tab
 
-<img src = "https://github.com/Myutaze/SmartTransparentOLEDGlasses/assets/123553691/ff2f056a-881f-41a9-a3ea-a7ddd75c09bb" width = "300">
+<img src = "https://github.com/Myutaze/SmartTransparentOLEDGlasses/assets/123553691/c685ea45-605d-4cc1-bdb7-d852ca12f14b" width = "300">
+
 
