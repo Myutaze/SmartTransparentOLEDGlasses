@@ -13,6 +13,7 @@ The Raspberry Pi 3B+ side will be our smartphone that retrieve data about the We
 
 Here is an overview of how it is proceeded:
 
-![Planning](https://github.com/Myutaze/SmartTransparentOLEDGlasses/assets/123553691/e5b54170-1e01-44e2-8847-53b5512bcae2)
+![Planning](https://github.com/Myutaze/SmartTransparentOLEDGlasses/assets/123553691/bddd8245-9562-44df-b6a7-5856b48ee51d)
+
 
 Begin from the Preparation Folder and have fun!
